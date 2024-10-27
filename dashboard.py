@@ -21,3 +21,14 @@ if st.button("Fetch Data"):
         st.write(data.tail())  # Show the latest entries
     else:
         st.write("No data found. Please check the ticker and date range.")
+
+
+    # Plot Closing Prices
+    if not data.empty:
+        st.subheader(f"{ticker} Closing Price Over Time")
+        st.line_chart(data['Close'])
+
+        # Additional plots or analysis
+        st.subheader("Moving Average")
+        data['Moving Avg'] = data['Close'].rolling(window=20).mean()
+        st.line_chart(data[['Close', 'Moving Avg']])
