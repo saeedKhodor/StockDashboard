@@ -32,3 +32,6 @@ if st.button("Fetch Data"):
         st.subheader("Moving Average")
         data['Moving Avg'] = data['Close'].rolling(window=20).mean()
         st.line_chart(data[['Close', 'Moving Avg']])
+    if not data.empty:
+        st.subheader(f"{ticker} Daily Volume")
+        st.bar_chart(data['Volume'])
